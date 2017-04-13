@@ -8,11 +8,20 @@ var addItem = function(state, item) {
     state.items.push(item);
 };
 
+// Remove from state function
+var removeItem = function(state) {
+    var item = $(this).closest('li').find('.shopping-item').text()
+    var index = state.items.indexOf(item);
+    if (index > -1) {
+    array.splice(index, 1);
+    }
+};
+
 // Render functions
 var renderList = function(state, element) {
     var itemsHTML = state.items.map(function(item) {
         return `<li>\
-          <span class="shopping-item"> ${item} </span>\
+          <span class="shopping-item">${item}</span>\
           <div class="shopping-item-controls">\
             <button class="shopping-item-toggle">\
               <span class="button-label">check</span>\
@@ -38,7 +47,7 @@ $('#js-shopping-list-form').submit(function(event) {
     renderList(state, $('.shopping-list'));
 });
 
-//I AM STUCK HERE!!!!!
+
 //EVENT CLICKING CHECK
 $('.shopping-list').on('click', '.shopping-item-toggle',function(event) {
     // event.stopPropagation()
@@ -46,7 +55,12 @@ $('.shopping-list').on('click', '.shopping-item-toggle',function(event) {
 
 })
 
+//EVENT CLICKING DELETE
 $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
     $(this).closest('li').remove()
-
+    var item = $(this).closest('li').find('.shopping-item').text()
+    var index = state.items.indexOf(item)
+    if (index > -1) {
+    state.items.splice(index, 1)
+    }
 })
