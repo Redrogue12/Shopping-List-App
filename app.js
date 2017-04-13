@@ -43,5 +43,10 @@ $('#js-shopping-list-form').submit(function(event) {
 $('.shopping-item-toggle').click(function(event) {
     // event.stopPropagation()
     $(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked')
-    console.log("wrtferg")
+
+})
+
+$('.shopping-item-delete').click(function(event) {
+    $(this).closest('li').remove()
+
 })
